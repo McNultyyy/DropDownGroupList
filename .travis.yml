@@ -9,4 +9,6 @@ install:
   - nuget restore DropDownGroupList.sln
 script:
   - xbuild /p:Configuration=Release DropDownGroupList.sln
-  - nuget pack DropDownGroupList.nuspec && nuget push *.nupkg $NUGET-API-KEY -verbosity detailed
+  - ls -a
+  - nuget pack DropDownGroupList.nuspec 
+  - nuget push *.nupkg $NUGET-API-KEY -verbosity detailed
