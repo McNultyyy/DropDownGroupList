@@ -4,10 +4,7 @@ mono:
 solution: DropDownGroupList.sln
 
 install:
-  - sudo apt-get install -y gtk-sharp2
-  - sudo apt-get install -y mono-xbuild
-  - sudo apt-get install -y mono-devel
-  - sudo apt-get install -y mono-gmcs
+  - sudo apt-get install -y mono-complete
   - nuget restore DropDownGroupList.sln
 script:
   - xbuild /p:Configuration=Release DropDownGroupList.sln
