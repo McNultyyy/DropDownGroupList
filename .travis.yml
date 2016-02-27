@@ -3,11 +3,14 @@ mono:
   - latest
 solution: DropDownGroupList.sln
 
-install:
+before-install:
+  - sudo apt-get update -qq > /dev/null
   - sudo apt-get install -y mono-complete
+  - mozroots --import --sync
+  - export EnableNuGetPackageRestore=true
   - nuget restore DropDownGroupList.sln
 script:
   - xbuild /p:Configuration=Release DropDownGroupList.sln
   - cd DropDownGroupList && ls -a
   - nuget pack Package.nuspec 
-  - nuget push *.nupkg $NUGET-API-KEY -verbosity detailed
+  - nuget push *.nupkg $NUGET_API_KEY -verbosity detailed
