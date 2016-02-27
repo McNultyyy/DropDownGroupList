@@ -1,0 +1,12 @@
+language: csharp
+mono:
+  - latest
+solution: DropDownGroupList.sln
+
+install:
+  - sudo apt-get install -y gtk-sharp2
+  - sudo apt-get install -y mono-xbuild
+  - nuget restore DropDownGroupList.sln
+script:
+  - xbuild /p:Configuration=Release DropDownGroupList.sln
+  - cd DropDownGroupList && nuget pack DropDownGroupList.nuspec && nuget push *.nupkg $NUGET-API-KEY -verbosity detailed
