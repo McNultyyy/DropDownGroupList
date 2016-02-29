@@ -12,6 +12,6 @@ before-install:
 script:
   - xbuild /p:Configuration=Release DropDownGroupList.sln
   - cd DropDownGroupList && ls -a
-  - if ! test -d lib; then mkdir lib\; fi && ls -a
+  - mkdir lib && ls -a
   - nuget pack Package.nuspec 
   - nuget push *.nupkg $NUGET_API_KEY -verbosity detailed
