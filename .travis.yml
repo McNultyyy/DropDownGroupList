@@ -9,8 +9,7 @@ before-install:
   - mozroots --import --sync
   - export EnableNuGetPackageRestore=true
   - nuget restore DropDownGroupList.sln
+  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 script:
   - xbuild /p:Configuration=Release DropDownGroupList.sln
-  - cd DropDownGroupList && ls -a
-  - nuget pack Package.nuspec 
-  - nuget push *.nupkg $NUGET_API_KEY -verbosity detailed
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe /DropDownGroupList.Tests/bin/Release/DropDownGroupList.Tests.dll
